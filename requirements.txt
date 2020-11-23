@@ -3,3 +3,4 @@ django-heroku
 Django
 numpy
 geojson
+whitenoise
