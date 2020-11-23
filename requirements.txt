@@ -1,5 +1,4 @@
 gunicorn
 Django
 numpy
-random
 geojson
