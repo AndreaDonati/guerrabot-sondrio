@@ -1,1 +1,1 @@
-web: gunicorn guerrabot-sondrio.wsgi
+web: gunicorn guerrabot_sondrio.wsgi
