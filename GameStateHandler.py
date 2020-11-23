@@ -8,14 +8,14 @@ class GameStateHandler:
     def __init__(self, provincia):
         self.provincia = provincia
         self.state = 0
-        self.old_outcome = ""
     def save_state(self, outcome):
         # open old geojson save file, load that and close old save file
-        outcome = "_"+outcome.replace(' ','_')
         # FORZATO PERCHE' FACEVA SCHIFO perché ancora non fetcho le risorse (penso)
-        outcome = ""
-        old_save_file = open("./resources/state_"+str(self.state)+self.old_outcome+".geojson", "r", encoding="utf-8")
-        data = json.load(old_save_file)
+        # outcome = ""
+        old_save_file = open("./resources/state_"+str(self.state)+".geojson", "r", encoding="utf-8")
+        whole_data = json.load(old_save_file)
+        whole_data["event_description"] = outcome
+        data = whole_data["data"]
         old_save_file.close()
         self.old_outcome = outcome
         for i in range(0,len(data["features"])):
@@ -27,10 +27,11 @@ class GameStateHandler:
             # set color
             data["features"][i]["properties"]["color"] = owner.color
         
+        whole_data["data"] = data
         # increment save index and save new file
         self.state+=1
-        with open("./resources/state_"+str(self.state)+outcome+".geojson", "w", encoding="utf-8") as f:
-            geojson.dump(data, f)
+        with open("./resources/state_"+str(self.state)+".geojson", "w", encoding="utf-8") as f:
+            geojson.dump(whole_data, f)
 
     def load_state(self, state):
         #TODO: implement

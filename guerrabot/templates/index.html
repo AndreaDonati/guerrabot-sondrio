@@ -9,7 +9,12 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+
 {% load static %}
+<div id="map_top" class="w3-content" style="max-width:2000px;margin-top:46px">
+    <strong><p class="w3-justify w3-center" id="event"></p></strong>
+</div>
 <script src="{% static 'js/map.js' %}"></script>
 <div id='map' class="w3-content" style="width:99%;height:400px;;margin-top:10px">
     <script>
@@ -17,7 +22,7 @@
         var jsonLayer = null;
     </script>
 </div>
-<div id="bottom" class="w3-content" style="max-width:2000px;margin-top:46px">
+<div id="map_bottom" class="w3-content" style="max-width:2000px;margin-top:46px">
     <input type="text" value="-1", id="prova">
     <input type="button" value="Next" onclick="next()">
 </div>

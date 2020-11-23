@@ -32,7 +32,7 @@ def processEvent1():
     #print(outcome)
     # make the two comuni fight and get the winner
     winner, game_finished = sondrio.battle(selected_comune, target)
-    outcome += " E "+ winner + " VINCE."
+    outcome += " "+ winner + " VINCE."
     print(winner + " VINCE.")
     return winner, game_finished, outcome
 
@@ -61,7 +61,7 @@ while True:
     try:
         winner, game_finished, outcome = processGameEvent(event)
         # scrivo sul json e in qualche modo dico alla pagina di leggerlo
-        gameStateHandler.save_state("")
+        gameStateHandler.save_state(outcome)
     except NoComuniConqueredError:
         print("Impossible to insurge on a Comune which has not yet conquered other Comuni.")
 

@@ -12,8 +12,17 @@ function next(){
     state = provando()
 
     d3.json("states/?state="+state).then(function(e){
-    console.log(e)
     
+    console.log(e["event_description"])
+    console.log(e["data"])
+
+    a = e["event_description"];
+    // update description on the intended div
+    var event_display = document.getElementById("event");
+    event_display.textContent = a
+    e = e["data"]
+
+    console.log(e)
     var popupContent = "";
     var currentHover = null;    
     var hovermarker = null;
