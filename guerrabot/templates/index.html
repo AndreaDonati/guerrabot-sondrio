@@ -1,20 +1,17 @@
 {% extends "base_generic.html" %}
-
 {% block content %}
   <p class="w3-justify">
       La mappa sottostante indica lo stato attuale della Valle. Ogni comune è rappresentato da un colore,
       aree dello stesso colore sono sotto controllo dello stesso comune.<br/>
       Bella spiegazione di merda non so neanche scrivere.
   </p>
-
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% load static %}
 <script src="{% static 'js/map.js' %}"></script>
-
-<div id='map' class="w3-content" style="width:80%;height:400px;;margin-top:46px">
+<div id='map' class="w3-content" style="width:99%;height:400px;;margin-top:10px">
     <script>
         var map = L.map('map').setView([46.168429, 9.874529], 9);
         var jsonLayer = null;
