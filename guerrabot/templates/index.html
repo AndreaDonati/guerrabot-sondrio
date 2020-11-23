@@ -1,160 +1,29 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Il GuerraBot di Sondrio</h1>
-  <p>Benvenuto sul GuerraBot di Sondrio, un sito sviluppato da <em>Andrea Donati</em>.</p>
-  <ul>
-    <li><strong>Senti qua:</strong> {{ test_text }}</li>
-  </ul>
+  <p class="w3-justify">
+      La mappa sottostante indica lo stato attuale della Valle. Ogni comune è rappresentato da un colore,
+      aree dello stesso colore sono sotto controllo dello stesso comune.<br/>
+      Bella spiegazione di merda non so neanche scrivere.
+  </p>
 
-{% load static %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% load static %}
+<script src="{% static 'js/map.js' %}"></script>
 
-<body>
-
-<div id='map' style="width: 600px; height: 400px">
-    <script> var map = L.map('map').setView([46.168429, 9.874529], 9);</script> 
+<div id='map' class="w3-content" style="width:600px;height:400px;;margin-top:46px">
+    <script>
+        var map = L.map('map').setView([46.168429, 9.874529], 9);
+        var jsonLayer = null;
+    </script>
 </div>
-<div id='bottom'>
-    <input type="text" value="1", id="prova">
+<div id="bottom" class="w3-content" style="max-width:2000px;margin-top:46px">
+    <input type="text" value="-1", id="prova">
     <input type="button" value="Next" onclick="next()">
 </div>
 
-<!-- <script>
-    var map = L.map('map').setView([46.168429, 9.874529], 8.5);
-    
-    // function onEachFeature(feature, layer) {
-	// 	var popupContent = "<p>I started out as a GeoJSON " +
-	// 			feature.geometry.type + ", but now I'm a Leaflet vector!</p>";
-
-	// 	if (feature.properties && feature.properties.popupContent) {
-	// 		popupContent += feature.properties.popupContent;
-	// 	}
-
-	// 	layer.bindPopup(popupContent);
-    // }
-    
-    var jsonLayer = new L.GeoJSON.AJAX("./resources/miei_comuni.geojson");       
-
-    jsonLayer.on("touchmove", function (event) {              
-        console.log(event);
-    });
-    jsonLayer.on("mousemove", function (event) {                  
-        // popupContent = "<p>"+feaures.properties.nome+" controlled by "+feaures.properties.nome;		
-        // jsonLayer.bindPopup(popupContent);
-    });
-    jsonLayer.on("click", function (event) {                  
-        console.log(event);
-        popupContent = "<p>"+event.layer.feature.properties.comune+"</p>";		
-        jsonLayer.bindPopup(popupContent);
-    });
-    jsonLayer.addTo(map);
-
-</script> -->
-
-<script>
-
-    function provando(){
-        var prova = document.getElementById("prova");
-        return prova.value
-    }
-    //var map = L.map('map').setView([46.168429, 9.874529], 9);
-    
-    function next(){
-    state = provando()
-    var prova = document.getElementById("prova"); prova.value=parseInt(state)+1
-    //'{% static "TEMP_saves/state_'+state+'.geojson" %}'
-    //url = '{% static "TEMP_saves/state_.geojson" %}'
-    //console.log(a);
-    d3.json("states/?state="+state).then(function(e){
-    console.log(e)
-    
-    var popupContent = "";
-    var currentHover = null;    
-    var hovermarker = null;
-    var areas;
-    var topoj;
-
-    function dashedFeature(feature,layer) {                
-        layer.setStyle({
-            className: 'territory '+feature.properties.comune,   
-            dashArray: '5, 10',
-            color: "black",
-            fillColor: feature.properties.color,
-            fillOpacity: 1,
-            weight: 1
-        })
-        popupContent = "<p>"+feature.properties.comune+" controlled by "+feature.properties.owner;		
-        layer.bindPopup(popupContent);
-    }
-
-    function lableFeature(feature,layer) {
-        layer.setStyle({
-            dashArray: null,
-            color: null,
-            fillColor: null,
-            fillOpacity: 0,
-        })
-        // FORSE, NON SONO MOLTO BELLE E OCCUPANO UN BEL PO' DI SPAZIO
-        var label = L.marker(layer.getBounds().getCenter(), {
-        icon: L.divIcon({
-            className: 'label',
-            //devo modificare lo zoom a runtime con map.on("zoomend", function(){ ... })
-            html: "<p style='font-size:"+1000/map.getZoom()+"%;' >"+feature.properties.comune+"</p>"
-            //iconSize: [100, 40]
-        })
-        }).addTo(map);
-    }
-    
-    function countryFeature(feature,layer) {
-        layer.setStyle({
-            className: 'country-'+feature.properties.ADMIN,
-            fillColor: countries.get(feature.properties.ADMIN).color,
-            fillOpacity: 1,                         
-            color: "black",
-            weight: 1
-        })
-    }
-
-    function countryHover(feature,layer) {
-        layer.setStyle({            
-            fill: false,                      
-            color: "limegreen",
-            weight: 3
-        })
-    }
-
-    function showHover(newHover){        
-        true;
-    }
-
-    // STA ROBA FA UN PO' CAGARE
-    // map.on("zoomend", function() {
-    //     if(map.hasLayer(lableLayer)){
-    //         map.removeLayer(lableLayer)
-    //     }
-    //     var lableLayer = L.geoJSON(e, {onEachFeature: lableFeature}).addTo(map)
-    // });
-
-    var jsonLayer = L.geoJSON(e, {onEachFeature: dashedFeature}).addTo(map);       
-    jsonLayer.on("touchmove", function (event) {              
-        showHover(event.layer.feature.properties.owner);
-    });
-    jsonLayer.on("mousemove", function (event) {                  
-        showHover(event.layer.feature.properties.owner);
-    });
-    jsonLayer.on("click", function (event) {   
-        console.log(event)               
-    });
-    jsonLayer.addTo(map);
-    });
-
-    }
-</script>
-
-</body>
 
 {% endblock %}
