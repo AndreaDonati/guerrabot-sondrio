@@ -1,1 +1,6 @@
 gunicorn
+Django
+numpy
+json
+random
+geojson
