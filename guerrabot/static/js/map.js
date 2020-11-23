@@ -23,7 +23,7 @@ function next(){
     function dashedFeature(feature,layer) {                
         layer.setStyle({
             className: 'territory '+feature.properties.comune,   
-            dashArray: '5, 10',
+            //dashArray: '5, 10',
             color: "black",
             fillColor: feature.properties.color,
             fillOpacity: 1,
