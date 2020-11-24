@@ -41,7 +41,7 @@ function changeState(direction){
             fillOpacity: 1,
             weight: 1
         })
-        popupContent = "<p>"+feature.properties.comune+" controlled by "+feature.properties.owner;		
+        popupContent = "<p>"+feature.properties.comune+" controllato da "+feature.properties.owner;		
         layer.bindPopup(popupContent);
     }
 
