@@ -1,9 +1,18 @@
 {% extends "base_generic.html" %}
 {% block content %}
+<div id="map_desc"><br/></div>
+<div><br/></div>
   <p class="w3-justify">
-      La mappa sottostante indica lo stato attuale della Valle. Ogni comune è rappresentato da un colore,
+      La mappa sottostante indica lo stato attuale della Guerra della Valle. Ogni comune ha il proprio colore,
       aree dello stesso colore sono sotto controllo dello stesso comune.<br/>
-      Bella spiegazione di merda non so neanche scrivere.
+      Per <strong>visualizzare lo stato di un comune</strong>, clickaci sopra e scoprirai che comune è e da quale altro comune è "controllato".
+      Puoi muoverti liberamente per la mappa ed esplorare tutti i 77 comuni della provincia di Sondrio.<br/>
+      <strong>Controlli (provvisori):</strong>
+      <ul>
+          <li class="w3-justify">Tramite i tasti <strong>Previous</strong> e <strong>Next</strong> ti muovi "nel tempo" rispettivamente indietro e in avanti.</li>
+          <li class="w3-justify">La casella di testo tra i tasti next e previous mostra il numero dello "stato" attuale</li>
+          <li class="w3-justify">Il <strong>testo sopra la mappa</strong> indica cosa è successo nello "step" di simulazione che stai visualizzando</li>
+      </ul>
   </p>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -18,13 +27,14 @@
 <script src="{% static 'js/map.js' %}"></script>
 <div id='map' class="w3-content" style="width:99%;height:400px;;margin-top:10px">
     <script>
-        var map = L.map('map').setView([46.168429, 9.874529], 9);
+        var map = L.map('map').setView([46.329861445464246,9.906881730860034], 9);
         var jsonLayer = null;
     </script>
 </div>
 <div id="map_bottom" class="w3-content" style="max-width:2000px;margin-top:46px">
+    <input type="button" value="Previous" onclick="changeState('prev')">
     <input type="text" value="-1", id="prova">
-    <input type="button" value="Next" onclick="next()">
+    <input type="button" value="Next" onclick="changeState('next')">
 </div>
 
 

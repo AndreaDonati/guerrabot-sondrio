@@ -17,25 +17,24 @@
 body {font-family: "Lato", sans-serif}
 .mySlides {display: none}
 </style>
-<!-- onload="next()" è messo per inizializzare la mappa -->
-<body onload="next()">
+<!-- onload="changeState()" è messo per inizializzare la mappa -->
+<body onload="changeState('next')">
 
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-black w3-card">
     <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
+    <a href="#map_desc" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MAPPA</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTATTI</a>
     <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
   </div>
 </div>
 
 <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
 <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-  <a href="#band" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">BAND</a>
-  <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">TOUR</a>
-  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MERCH</a>
+  <a href="#map_desc" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MAPPA</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTATTI</a>
 </div>
 
 <!-- Page content -->
@@ -45,73 +44,101 @@ body {font-family: "Lato", sans-serif}
     {% load static %}
     <img src="{% static 'img/slideshow_1.jpg' %}" style="width:100%">
     <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-      <h3>Busac</h3>
-      <p><b>Maiagat</b></p>   
+      <h3>Valtellina</h3>
+      <p><b>Immagine 1</b></p>   
     </div>
   </div>
   <div class="mySlides w3-display-container w3-center">
     {% load static %}
     <img src="{% static 'img/slideshow_2.jpg' %}" style="width:100%">
     <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-      <h3>Griggoswaggo</h3>
-      <p><b>Ilpeggiore.</b></p>    
+      <h3>Valtellina</h3>
+      <p><b>Immagine 2</b></p>    
     </div>
   </div>
   <div class="mySlides w3-display-container w3-center">
     {% load static %}
     <img src="{% static 'img/slideshow_3.jpg' %}" style="width:100%">
     <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-      <h3>Donega</h3>
-      <p><b>Cazzo quanto è forte.</b></p>    
+      <h3>Valtellina</h3>
+      <p><b>Immagine 3</b></p>    
     </div>
+  </div>
+  <!-- Slideshow di proverbi e/o definizioni di ValtellinaBeauty-->
+  <div class="mySayings w3-display-container w3-center w3-justify w3-padding-16">
+    <p class="w3-justify w3-center"><strong>&#8220;Quand el gal el canta fö de ura, se l’è serén el se nigùla&#8221;</strong><br />
+    <em>(Quando il gallo canta ad un’ora diversa dal solito, se è sereno si rannuvola)</em></p>
+  </div>
+  <div class="mySayings w3-display-container w3-center w3-justify w3-padding-16">
+    <p class="w3-justify w3-center"><strong>&#8220;Quand el vén serén de nòt, l’è cume na végia che va al tròt&#8221;</strong><br />
+    <em>(Quando si rasserena di notte, è come una vecchia che va al trotto, cioè dura poco)</em></p>
+  </div>
+  <div class="mySayings w3-display-container w3-center w3-justify w3-padding-16">
+    <p class="w3-justify w3-center"><strong>&#8220;Cume gh’è miga galena senza bèch, ghè miga persona senza difètt&#8221;</strong><br />
+    <em>(Come non c’è gallina senza becco, non c’è persona senza difetti)</em></p>
+  </div>
+  <div class="mySayings w3-display-container w3-center w3-justify w3-padding-16">
+    <p class="w3-justify w3-center"><strong>&#8220;Tücc i més al végn la lüna, tücc i di me n’impara üna&#8221;</strong><br />
+    <em>(Tutti i mesi viene la luna, tutti i giorni se ne impara una)</em></p>
+  </div>
+  <div class="mySayings w3-display-container w3-center w3-justify w3-padding-16">
+    <p class="w3-justify w3-center"><strong>&#8220;Chi séguita a giügà en malura prést el va&#8221;</strong><br />
+    <em>(Chi continua a giocare presto va in malora)</em></p>
+  </div>
+  <div class="mySayings w3-display-container w3-center w3-justify w3-padding-16">
+    <p class="w3-justify w3-center"><strong>&#8220;Al fa de so tésta se sc’campa ciüsè&#8221;</strong><br />
+    <em>(A fare di testa propria si vive di più)</em></p>
+  </div>
+  <div class="mySayings w3-display-container w3-center w3-justify w3-padding-16">
+    <p class="w3-justify w3-center"><strong>&#8220;S’ha da crét metà de quel che se vètt e gnént de quel che se sént&#8221;</strong><br />
+    <em>(Bisogna credere a metà di quello che si vede e nulla di quello che si sente)</em></p>
+  </div>
+  <div class="mySayings w3-display-container w3-center w3-justify w3-padding-16">
+    <p class="w3-justify w3-center"><strong>&#8220;A diventà vècc la va a la pècc&#8221;</strong><br />
+    <em>(Diventando vecchi, le cose vanno sempre peggio)</em></p>
+  </div>
+  <div class="mySayings w3-display-container w3-center w3-justify w3-padding-16">
+    <p class="w3-justify w3-center"><strong>“L’è méi murì pién che campä schìsc”</strong><br />
+    <em>(Meglio morire pieni che campare di stenti)</em></p>
+  </div>
+  <div class="mySayings w3-display-container w3-center w3-justify w3-padding-16">
+    <p class="w3-justify w3-center"><strong>&#8220;Per  cugnoser al merlu bisogna stac insem istaa e invern&#8221;</strong><br />
+    <em>(Per conoscere il merlo bisogna starci insieme d’estate e d’inverno)</em></p>
+  </div>
+  <div class="mySayings w3-display-container w3-center w3-justify w3-padding-16">
+    <p class="w3-justify w3-center"><strong>“Püsée se ràia, püsée se sbàia”</strong><br />
+    <em>(Più si raglia, più si sbaglia)</em></p>
+  </div>
+  <div class="mySayings w3-display-container w3-center w3-justify w3-padding-16">
+    <p class="w3-justify w3-center"><strong>&#8220;I pirèe i-a mai facc’ sü pum&#8221;</strong><br />
+    <em>(I peri non hanno mai prodotto mele)</em></p>
+  </div>
+  <div class="mySayings w3-display-container w3-center w3-justify w3-padding-16">
+    <p class="w3-justify w3-center"><strong>&#8220;Bon bec l&#8217;è mai lec&#8221;</strong><br />
+    <em>(Un buon caprone non è mai schizzinoso)</em></p>
+  </div>
+  <div class="mySayings w3-display-container w3-center w3-justify w3-padding-16">
+    <p class="w3-justify w3-center"><strong>&#8220;A fac del ben a l’asen se ciapa pesciadi in del cul&#8221;</strong><br />
+    <em>(A fare del bene all’asino si prendono pedate nel sedere)</em></p>
   </div>
   <!-- The Band Section -->
   <div class="w3-container w3-content w3-center w3-padding-16" style="max-width:800px" id="band">
     <h2 class="w3-wide">GuerraBot Sondrio</h2>
-    <p class="w3-opacity"><i>Su scià a to l vedel.</i></p>
-    <p class="w3-justify">
-
-      <p class="w3-justify"><strong>&#8220;Quand el gal el canta fö de ura, se l’è serén el se nigùla&#8221;</strong><br />
-        <em>(Quando il gallo canta ad un’ora diversa dal solito, se è sereno si rannuvola)</em></p>
-        <p class="w3-justify"><strong>&#8220;Quand el vén serén de nòt, l’è cume na végia che va al tròt&#8221;</strong><br />
-        <em>(Quando si rasserena di notte, è come una vecchia che va al trotto, cioè dura poco)</em></p>
-        <p class="w3-justify"><strong>&#8220;Cume gh’è miga galena senza bèch, ghè miga persona senza difètt&#8221;</strong><br />
-        <em>(Come non c’è gallina senza becco, non c’è persona senza difetti)</em></p>
-        <p class="w3-justify"><strong>&#8220;Tücc i més al végn la lüna, tücc i di me n’impara üna&#8221;</strong><br />
-        <em>(Tutti i mesi viene la luna, tutti i giorni se ne impara una)</em></p>
-        <p class="w3-justify"><strong>&#8220;Chi séguita a giügà en malura prést el va&#8221;</strong><br />
-        <em>(Chi continua a giocare presto va in malora)</em></p>
-        <p class="w3-justify"><strong>&#8220;Al fa de so tésta se sc’campa ciüsè&#8221;</strong><br />
-        <em>(A fare di testa propria si vive di più)</em></p>
-        <p class="w3-justify"><strong>&#8220;S’ha da crét metà de quel che se vètt e gnént de quel che se sént&#8221;</strong><br />
-        <em>(Bisogna credere a metà di quello che si vede e nulla di quello che si sente)</em></p>
-        <p class="w3-justify"><strong>&#8220;A diventà vècc la va a la pècc&#8221;</strong><br />
-        <em>(Diventando vecchi, le cose vanno sempre peggio)</em></p>
-        <p class="w3-justify"><strong>“L’è méi murì pién che campä schìsc”</strong><br />
-        <em>(Meglio morire pieni che campare di stenti)</em></p>
-        <p class="w3-justify"><strong>&#8220;Per  cugnoser al merlu bisogna stac insem istaa e invern&#8221;</strong><br />
-        <em>(Per conoscere il merlo bisogna starci insieme d’estate e d’inverno)</em></p>
-        <p class="w3-justify"><strong>“Püsée se ràia, püsée se sbàia”</strong><br />
-        <em>(Più si raglia, più si sbaglia)</em></p>
-        <p class="w3-justify"><strong>&#8220;I pirèe i-a mai facc’ sü pum&#8221;</strong><br />
-        <em>(I peri non hanno mai prodotto mele)</em></p>
-        <p class="w3-justify"><strong>&#8220;Bon bec l&#8217;è mai lec&#8221;</strong><br />
-        <em>(Un buon caprone non è mai schizzinoso)</em></p>
-        <p class="w3-justify"><strong>&#8220;A fac del ben a l’asen se ciapa pesciadi in del cul&#8221;</strong><br />
-        <em>(A fare del bene all’asino si prendono pedate nel sedere)</em></p>
-      </div>
-    </div>
+    <p class="w3-opacity"><i>di Andrea Donati</i></p>
+    <p class="w3-justify">Il <strong>GuerraBot</strong> è una <strong>simulazione</strong> di una guerra tra diverse fazioni.
+    In  questo caso le fazioni sono i comuni della provincia di Sondrio. Questo sito ha il solo scopo di visualizzare l'evoluzione nel
+    tempo della simulazione: rivedere cosa è successo e controllare lo stato attuale.</p>
   </div>
   <!-- Actual Map -->
   <div class="w3-container w3-content w3-center" style="max-width:800px" >{% block content %}{% endblock %}</div>
   <!-- The Contact Section -->
   <div class="w3-container w3-content w3-padding-32" style="max-width:800px" id="contact">
-    <h2 class="w3-wide w3-center">CONTACT</h2>
-    <p class="w3-opacity w3-center"><i>Dammi i tuoi soldi, ORA!</i></p>
+    <h2 class="w3-wide w3-center">CONTATTI</h2>
+    <p class="w3-opacity w3-center"><i>Per saperne di più, per curiosità o per donarmi un sacco di soldi</i></p>
     <div class="w3-row w3-padding-32">
       <div class="w3-col m6 w3-large w3-margin-bottom">
         <i class="fa fa-map-marker" style="width:30px"></i> Chiuro (SO)<br>
-        <i class="fa fa-phone" style="width:30px"></i> Phone: quello di tua madre va bene<br>
+        <i class="fa fa-phone" style="width:30px"></i> Tel: 333 333 3333<br>
         <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>
       </div>
       <div class="w3-col m6">
@@ -149,13 +176,21 @@ carousel();
 
 function carousel() {
   var i;
+  //images
   var x = document.getElementsByClassName("mySlides");
+  //sayings
+  var y = document.getElementsByClassName("mySayings");
   for (i = 0; i < x.length; i++) {
     x[i].style.display = "none";  
   }
+  for (i = 0; i < y.length; i++) {
+    y[i].style.display = "none";  
+  }
   myIndex++;
   if (myIndex > x.length) {myIndex = 1}    
+  if (myIndex > y.length) {myIndex = 1}    
   x[myIndex-1].style.display = "block";  
+  y[myIndex-1].style.display = "block";  
   setTimeout(carousel, 4000);    
 }
 // Used to toggle the menu on small screens when clicking on the menu button

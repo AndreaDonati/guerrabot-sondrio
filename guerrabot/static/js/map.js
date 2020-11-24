@@ -1,15 +1,18 @@
 //var map = L.map('map').setView([46.168429, 9.874529], 9);
 var jsonLayer = null;
 
-        function provando(){
+        function provando(direction){
             var prova = document.getElementById("prova");
-            prova.value=parseInt(prova.value)+1
+            if(direction == 'next')
+                prova.value=parseInt(prova.value)+1
+            else
+                prova.value=parseInt(prova.value)-1
             return prova.value
         }
         //var map = L.map('map').setView([46.168429, 9.874529], 9);
 
-function next(){
-    state = provando()
+function changeState(direction){
+    state = provando(direction)
 
     d3.json("states/?state="+state).then(function(e){
     

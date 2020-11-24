@@ -99,31 +99,37 @@ class Provincia:
         #     print(comune)
 
     def getRandomComuneAndTarget(self):
-        attacker = self.comuni[random.choice(list(self.comuni.keys()))]
-        target = attacker
-        #non dovrei neanche checkarlo
-        while attacker.owned_by is not None:
-            attacker = attacker.owned_by
-        #print("Selected attacker: "+attacker.name)
-        #print("Adiacenze:")
-        #for bcomune in attacker.getAdjacents():
-        #    print(bcomune.name+", ", end="")
-        try:
-            target = random.choice(attacker.getAdjacents())
-        except IndexError:
-            # VITTORIA DEL COMUNE SCELTO COME ATTACKET
-            # perché non avere nessuno nelle adiacenze significa avere conquistato tutti
-            return attacker, True
-            # ciao = attacker.name
-            # while  len(ciao)!=0:
-            #     self.printBattleStats(ciao)
-            #     ciao = input()
 
-        #print("Selecting target...")
-        #print("A possible target is: "+ target.name + "OWNED by: "+str(target.owned_by))
-        while target.owned_by is not None:
-        #    print("OWNED by: "+target.owned_by.name)
-            target = target.owned_by
+        while True:
+            attacker = self.comuni[random.choice(list(self.comuni.keys()))]
+            target = attacker
+            #non dovrei neanche checkarlo
+            #while attacker.owned_by is not None:
+            #    attacker = attacker.owned_by
+            #print("Selected attacker: "+attacker.name)
+            #print("Adiacenze:")
+            #for bcomune in attacker.getAdjacents():
+            #    print(bcomune.name+", ", end="")
+            try:
+                target = random.choice(attacker.getAdjacents())
+            except IndexError:
+                # VITTORIA DEL COMUNE SCELTO COME ATTACKET
+                # perché non avere nessuno nelle adiacenze significa avere conquistato tutti
+                return attacker, True
+                # ciao = attacker.name
+                # while  len(ciao)!=0:
+                #     self.printBattleStats(ciao)
+                #     ciao = input()
+            while attacker.owned_by is not None:
+                attacker = attacker.owned_by
+            #print("Selecting target...")
+            #print("A possible target is: "+ target.name + "OWNED by: "+str(target.owned_by))
+            while target.owned_by is not None:
+            #    print("OWNED by: "+target.owned_by.name)
+                target = target.owned_by
+            
+            if attacker != target:
+                break
 
         return attacker, target
 
@@ -142,7 +148,7 @@ class Provincia:
 
     def battle(self, attacker, attacked):
         # select a winner of the battle (NOW: RANDOMLY)
-        winner = random.choice([attacker, attacked]).name
+        winner = self._selectWinner(attacker,attacked)
         loser = attacked.name if winner == attacker.name else attacker.name
         # update the adjacencies and the attributes of the two involved Comuni
         #self.adjacency_table[winner].extend(self.adjacency_table[loser])
@@ -174,6 +180,18 @@ class Provincia:
         #print(self.comuni[winner].conquered)
 
         return winner, False
+
+    def _selectWinner(self, attacker, attacked):
+        # first implementation: choosing the winner randomly
+        # return random.choice([attacker, attacked]).name
+        
+        # more decent implementation: counting how many Comuni one controls
+        # and assign a probability of win according to those number
+        atkr = len(attacker.conquered)
+        atkd = len(attacked.conquered)
+        sum_conq = atkr+atkd
+        return np.random.choice([attacker,attacked],p=[atkr/sum_conq,atkd/sum_conq]).name if sum_conq != 0 else random.choice([attacker, attacked]).name
+
 
     def insurge(self, insurgent, other):
         # put the insurgent comune back in the comuni list
