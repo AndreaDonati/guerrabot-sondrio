@@ -127,7 +127,17 @@ body {font-family: "Lato", sans-serif}
     <p class="w3-opacity"><i>di Andrea Donati</i></p>
     <p class="w3-justify">Il <strong>GuerraBot</strong> è una <strong>simulazione</strong> di una guerra tra diverse fazioni.
     In  questo caso le fazioni sono i comuni della provincia di Sondrio. Questo sito ha il solo scopo di visualizzare l'evoluzione nel
-    tempo della simulazione: rivedere cosa è successo e controllare lo stato attuale.</p>
+    tempo della simulazione: rivedere cosa è successo e controllare lo stato attuale.</p><br/>
+    <strong>Come funziona (per ora):</strong>
+    <ul>
+      <li class="w3-justify">Ad ogni turno, un comune viene scelto come "attaccante", ed un altro, adiacente al primo, viene scelto come
+        bersaglio dell'attacco;
+      </li>
+      <li class="w3-justify">I due comuni "combattono", e viene selezionato il vincitore sulla base di alcune regole (che adesso sono un po'
+        stupide ma si possono cambiare molto facilmente);
+      </li>
+      <li class="w3-justify">Il comune che vince la battaglia conquista tutti i territori del perdente.</li>
+    </ul>
   </div>
   <!-- Actual Map -->
   <div class="w3-container w3-content w3-center" style="max-width:800px" >{% block content %}{% endblock %}</div>
