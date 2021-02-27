@@ -12,6 +12,10 @@ The simulation is already generated and stored on the server, since this website
 The simulation runs by events, each event can be thought of as a day. On day one, the initial configuration is given: all the villages are under control of themselves.
 Then, every day, a battle between two randomly-selected adjacent villages is simulated, deciding the winner of the battle with a probability based on the number of villages the battlers have conquered in the previous days.
 When a village wins, it takes control of the loosing village and of all its conquered ones. The simulation ends when a village has conquered all the province of Sondrio
-It is generated (by the means of a few Python scripts) as GeoJSON files, which contain
+
+The simulation is generated (by the means of a few Python scripts) as GeoJSON files, which contain the state of the province each day together with a string identifying what happens on each day, e.g. "Chiuro ATTACCA Ponte in Valtellina. Chiuro VINCE" that means that the two villages Chiuro and Ponte in Valtellina battle and Chiuro comes out as winner taking over the Ponte in Valtellina territories.
 
 ## Current State of the Project
+
+The website is far to be finished and complete, various features of visualization are missing or lacking consistency between web and mobile version. However, I think this is a
+good mockup of what I want the final product to be when it is complete.
